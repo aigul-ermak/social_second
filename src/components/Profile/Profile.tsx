@@ -13,6 +13,7 @@ const Profile = () => {
 
             <Myposts />
 
+
         </div>
     </div>
 }
