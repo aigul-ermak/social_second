@@ -3,3 +3,12 @@
     background-color: darkgray;
     padding: 20px;
 }
+
+.item a {
+    color: darkslateblue;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: white;
+}

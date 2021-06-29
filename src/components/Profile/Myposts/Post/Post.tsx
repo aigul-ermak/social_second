@@ -14,8 +14,6 @@ const Post = (props: PostPropsType) => {
             <div>
                 <span>like</span>
             </div>
-
-
         </div>
 
     )
