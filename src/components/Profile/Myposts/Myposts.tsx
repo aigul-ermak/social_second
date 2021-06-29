@@ -2,13 +2,18 @@ import React from 'react';
 import s from './Myposts.module.css'
 import Post from './Post/Post';
 
-// type postDataType = {
-//     // id: number
-//     message: string
-//     // likesCount: number
-// }
+
 
 const Myposts = () => {
+
+    let posts = [
+        {id: 1, message: 'go home', likesCount: 1},
+        {id: 2, message: 'go to school', likesCount: 2},
+        {id: 3, message: 'go to work', likesCount: 33},
+    ]
+
+    let postElements = posts
+        .map ( post => <Post message={post.message} likesCount={post.likesCount} id={post.id}/>);
 
     return (
         <div className={s.postsBlock}>
@@ -24,10 +29,7 @@ const Myposts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post message={'go home'}/>
-                <Post message={'go to school'}/>
-
-
+                {postElements}
             </div>
         </div>
     )
