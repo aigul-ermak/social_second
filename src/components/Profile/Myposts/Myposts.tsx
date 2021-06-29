@@ -2,7 +2,14 @@ import React from 'react';
 import s from './Myposts.module.css'
 import Post from './Post/Post';
 
+// type postDataType = {
+//     // id: number
+//     message: string
+//     // likesCount: number
+// }
+
 const Myposts = () => {
+
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -17,9 +24,10 @@ const Myposts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post message="Hi, how are you?"/>
-                <Post message="My first post!"/>
-                <Post message="What do you do?"/>
+                <Post message={'go home'}/>
+                <Post message={'go to school'}/>
+
+
             </div>
         </div>
     )
