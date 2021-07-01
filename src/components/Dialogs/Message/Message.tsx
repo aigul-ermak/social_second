@@ -6,6 +6,7 @@ export type messagePropsType = {
     id: number
     message: string
 }
+
 const Message = (props: messagePropsType) => {
     return <div className={s.message}>{props.message}</div>
 }

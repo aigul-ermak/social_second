@@ -38,9 +38,8 @@ let state : StateType = {
             { id: 2, name: 'Valera' },
             { id: 3, name: 'Sasha' },
             { id: 4, name: 'Viktor' },
-            { id: 5, name: 'Katya' },
-            { id: 6, name: 'Sveta' }
-        ],
+            { id: 5, name: 'Katya' }
+                    ],
         messages: [
             { id: 1, message: 'How are you?' },
             { id: 2, message: 'What do you do?' },
