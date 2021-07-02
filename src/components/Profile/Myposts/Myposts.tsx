@@ -4,6 +4,7 @@ import Post, {PostPropsType} from './Post/Post';
 
 type MypostsPropsType = {
     posts: Array<PostPropsType>
+    addPost: (postMessage: string) => void
 }
 
 const Myposts = (props: MypostsPropsType) => {
@@ -14,8 +15,11 @@ const Myposts = (props: MypostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();//шаг1 -создаем специальную переменную - ссылку на элемент
 
     let addPost = () => {
-        let text = newPostElement.current?.value;
-        alert(text)
+
+        // let text = newPostElement.current?.value;
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+        }
     } //шаг4 - функция к которой мы можем обратиться к этой ссылке, далее к свойству current и у него берем value
     return (
         <div className={s.postsBlock}>

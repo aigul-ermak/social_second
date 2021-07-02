@@ -17,7 +17,7 @@ type DialogsType = {
     id: number
     name: string
 }
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
@@ -31,36 +31,55 @@ export type StateType = {
     sidebar: SideBarType
 }
 
-let state : StateType = {
+let state: StateType = {
     dialogsPage: {
         dialogs: [
-            { id: 1, name: 'Dimych' },
-            { id: 2, name: 'Valera' },
-            { id: 3, name: 'Sasha' },
-            { id: 4, name: 'Viktor' },
-            { id: 5, name: 'Katya' }
-                    ],
+            {id: 1, name: 'Dimych'},
+            {id: 2, name: 'Valera'},
+            {id: 3, name: 'Sasha'},
+            {id: 4, name: 'Viktor'},
+            {id: 5, name: 'Katya'}
+        ],
         messages: [
-            { id: 1, message: 'How are you?' },
-            { id: 2, message: 'What do you do?' },
-            { id: 3, message: 'How come?' },
-            { id: 4, message: 'Where you go?' }
+            {id: 1, message: 'How are you?'},
+            {id: 2, message: 'What do you do?'},
+            {id: 3, message: 'How come?'},
+            {id: 4, message: 'Where you go?'}
         ]
     },
     profilePage: {
         posts: [
-            { id: 1, message: 'go home', likesCount: 1 },
-            { id: 2, message: 'go to school', likesCount: 2 },
-            { id: 3, message: 'go to work', likesCount: 33 },
+            {id: 1, message: 'go home', likesCount: 1},
+            {id: 2, message: 'go to school', likesCount: 2},
+            {id: 3, message: 'go to work', likesCount: 33},
         ]
     },
     sidebar: {
         friend: [
-            { id: 1, name: 'Sasha' },
-            { id: 2, name: 'Oleg' },
-            { id: 3, name: 'Sam' }
+            {id: 1, name: 'Sasha'},
+            {id: 2, name: 'Oleg'},
+            {id: 3, name: 'Sam'}
         ]
     }
 }
+
+export let addPost = (postMessage: string) => {
+    let newPost: PostType = {
+        id: 5,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.profilePage.posts.push(newPost);
+}
+
+export let addMessage = (textMessage: string) => {
+
+    let newMessage: MessageType= {
+        id: 6,
+        message: textMessage
+    };
+    state.dialogsPage.messages.push(newMessage)
+}
+
 
 export default state;
