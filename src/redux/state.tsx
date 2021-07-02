@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from '../render';
+
 export type FriendType = {
     id: number
     name: string
@@ -70,6 +72,7 @@ export let addPost = (postMessage: string) => {
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state)
 }
 
 export let addMessage = (textMessage: string) => {
@@ -79,6 +82,7 @@ export let addMessage = (textMessage: string) => {
         message: textMessage
     };
     state.dialogsPage.messages.push(newMessage)
+    rerenderEntireTree(state)
 }
 
 
