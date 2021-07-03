@@ -14,6 +14,7 @@ type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 type DialogsType = {
     id: number
@@ -54,7 +55,8 @@ let state: StateType = {
             {id: 1, message: 'go home', likesCount: 1},
             {id: 2, message: 'go to school', likesCount: 2},
             {id: 3, message: 'go to work', likesCount: 33},
-        ]
+        ],
+        newPostText: 'it-kamasutra.com'
     },
     sidebar: {
         friend: [
@@ -85,5 +87,9 @@ export let addMessage = (textMessage: string) => {
     rerenderEntireTree(state)
 }
 
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state)
+}
 
 export default state;

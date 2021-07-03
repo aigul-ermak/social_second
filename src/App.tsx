@@ -8,12 +8,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {addMessage, addPost, StateType} from './redux/state';
+import {addMessage, addPost, StateType, updateNewPostText} from './redux/state';
 
 type AppPropsType = {
     state: StateType
     addPost: (postMessage: string) => void
     addMessage: (textMessage: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -28,6 +29,7 @@ function App(props: AppPropsType) {
                         <Profile
                             profilePage={props.state.profilePage}
                             addPost={props.addPost}
+                            updateNewPostText={props.updateNewPostText}
                         /> }/>
                     <Route path="/messages/" render={ () =>
                         <Dialogs

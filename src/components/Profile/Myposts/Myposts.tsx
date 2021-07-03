@@ -4,7 +4,9 @@ import Post, {PostPropsType} from './Post/Post';
 
 type MypostsPropsType = {
     posts: Array<PostPropsType>
+    newPostText: string
     addPost: (postMessage: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 const Myposts = (props: MypostsPropsType) => {
@@ -19,14 +21,20 @@ const Myposts = (props: MypostsPropsType) => {
         // let text = newPostElement.current?.value;
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
+            props.updateNewPostText('') //зануляем значение через пропс
         }
     } //шаг4 - функция к которой мы можем обратиться к этой ссылке, далее к свойству current и у него берем value
+    let onPostChange = () => {
+        if (newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
+    }
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>;
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>;
                     {/*шаг2 -  тут вызываем эту ссылку которая заработает если нажмут на шаг 3*/}
                 </div>
                 <div>
