@@ -5,7 +5,7 @@ import Post, {PostPropsType} from './Post/Post';
 type MypostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
-    addPost: (postMessage: string) => void
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
@@ -19,10 +19,10 @@ const Myposts = (props: MypostsPropsType) => {
     let addPost = () => {
 
         // let text = newPostElement.current?.value;
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            props.updateNewPostText('') //зануляем значение через пропс
-        }
+        // if (newPostElement.current)
+            props.addPost()
+            // props.updateNewPostText('') //зануляем значение через пропс
+
     } //шаг4 - функция к которой мы можем обратиться к этой ссылке, далее к свойству current и у него берем value
     let onPostChange = () => {
         if (newPostElement.current) {
