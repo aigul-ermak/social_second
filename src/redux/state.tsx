@@ -1,4 +1,7 @@
-import {rerenderEntireTree} from '../render';
+// import {rerenderEntireTree} from '../render';
+let rerenderEntireTree = (state: StateType) => {
+    console.log('state is changed')
+}
 
 export type FriendType = {
     id: number
@@ -67,7 +70,7 @@ let state: StateType = {
     }
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost: PostType = {
         id: 5,
         message: state.profilePage.newPostText,
@@ -76,21 +79,25 @@ export let addPost = () => {
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = ''; //зануляем строку, убрали из Addpost пропс UpdatedNewPostText = '';
     rerenderEntireTree(state)
-}
+};
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state)
+};
 
-export let addMessage = (textMessage: string) => {
+export const addMessage = (textMessage: string) => {
 
-    let newMessage: MessageType= {
+    let newMessage: MessageType = {
         id: 6,
         message: textMessage
     };
     state.dialogsPage.messages.push(newMessage)
     rerenderEntireTree(state)
-}
+};
 
-export let updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state)
-}
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer
+};
+
 
 export default state;

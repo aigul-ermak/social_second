@@ -24,7 +24,7 @@ const Message = (props: messagePropsType) => {
                 {props.message}
             </div>
             <div>
-                <textarea ref={newMessageElement}></textarea>
+                <textarea ref={newMessageElement}/>
                 {/*//step2*/}
                 <button onClick={addMessage}>Add message</button>
                 {/*step3*/}
