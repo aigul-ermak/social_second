@@ -8,36 +8,40 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import { StateType, updateNewMessageText} from './redux/state';
+import {StoreType} from './redux/state';
 
 type AppPropsType = {
-    state: StateType
+    store: StoreType
+    // state: StateType
     addPost: () => void
     addMessage: () => void
     updateNewPostText: (newText: string) => void
     updateNewMessageText: (newMessageText: string) => void
 
+
 }
 
 function App(props: AppPropsType) {
+    const state = props.store.getState();
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar friend={props.state.sidebar.friend}/>
+                <Navbar />
+                {/*<Navbar friend={state.sidebar}/>*/}
 
                 <div className="app-wrapper-content">
                     <Route path="/profile/" render={() =>
                         <Profile
-                            profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
+                            profilePage={state.profilePage}
+                            addPost={props.store.addPost.bind(props.store)}
+                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                         />}/>
                     <Route path="/messages/" render={() =>
                         <Dialogs
-                            dialogsPage={props.state.dialogsPage}
-                            addMessage={props.addMessage}
-                            updateNewMessageText={updateNewMessageText}
+                            dialogsPage={state.dialogsPage}
+                            addMessage={props.store.addMessage.bind(props.store)}
+                            updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
 
                         />}/>
                     <Route path="/news/" render={() => <News/>}/>

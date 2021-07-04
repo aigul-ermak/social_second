@@ -4,13 +4,14 @@ import s from './Navbar.module.css'
 import {FriendType} from '../../redux/state';
 import SideBar from './sidebar/sidebar';
 
-type NavbarPropsType = {
-    friend: Array<FriendType>
-}
+// type NavbarPropsType = {
+//     friend: Array<FriendType>
+//     // sideBar: Array<SideBarPropsType>
+// }
 
-const Navbar = (props: NavbarPropsType) => {
-    let friendElements = props.friend
-        .map(f => <SideBar id={f.id} name={f.name}/>)
+const Navbar = () => {
+    // let friendElements = props.friend
+    //     .map(f => <SideBar id={f.id} name={f.name}/>)
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -33,7 +34,7 @@ const Navbar = (props: NavbarPropsType) => {
                     <h3>Sidebar</h3>
                 </div>
                 <div>
-                    {friendElements}
+                    {/*{friendElements}*/}
                 </div>
             </div>
         </nav>

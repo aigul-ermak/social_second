@@ -1,8 +1,3 @@
-// import {rerenderEntireTree} from '../render';
-let rerenderEntireTree = (state: StateType) => {
-    console.log('state is changed')
-}
-
 export type FriendType = {
     id: number
     name: string
@@ -37,73 +32,89 @@ export type StateType = {
     profilePage: ProfilePageType
     sidebar: SideBarType
 }
+export type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    _callSubscriber: () => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addMessage: () => void
+    updateNewMessageText: (newMessageText: string) => void
+    subscribe: (observer: () => void) => void
 
-let state: StateType = {
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Dimych'},
-            {id: 2, name: 'Valera'},
-            {id: 3, name: 'Sasha'},
-            {id: 4, name: 'Viktor'},
-            {id: 5, name: 'Katya'}
-        ],
-        messages: [
-            {id: 1, message: 'How are you?'},
-            {id: 2, message: 'What do you do?'},
-            {id: 3, message: 'How come?'},
-            {id: 4, message: 'Where you go?'}
-        ],
-        newMessageText: ''
+}
+
+
+let store: StoreType = {
+    _state: {
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Valera'},
+                {id: 3, name: 'Sasha'},
+                {id: 4, name: 'Viktor'},
+                {id: 5, name: 'Katya'}
+            ],
+            messages: [
+                {id: 1, message: 'How are you?'},
+                {id: 2, message: 'What do you do?'},
+                {id: 3, message: 'How come?'},
+                {id: 4, message: 'Where you go?'}
+            ],
+            newMessageText: ''
+        },
+        profilePage: {
+            posts: [
+                {id: 1, message: 'go home', likesCount: 1},
+                {id: 2, message: 'go to school', likesCount: 2},
+                {id: 3, message: 'go to work', likesCount: 33},
+            ],
+            newPostText: 'it-kamasutra.com'
+        },
+        sidebar: {
+            friend: [
+                {id: 1, name: 'Sasha'},
+                {id: 2, name: 'Oleg'},
+                {id: 3, name: 'Sam'}
+            ]
+        }
     },
-    profilePage: {
-        posts: [
-            {id: 1, message: 'go home', likesCount: 1},
-            {id: 2, message: 'go to school', likesCount: 2},
-            {id: 3, message: 'go to work', likesCount: 33},
-        ],
-        newPostText: 'it-kamasutra.com'
+    getState() {
+        return this._state;
     },
-    sidebar: {
-        friend: [
-            {id: 1, name: 'Sasha'},
-            {id: 2, name: 'Oleg'},
-            {id: 3, name: 'Sam'}
-        ]
+    _callSubscriber() {
+        console.log('state is changed')
+    },
+    addPost() {
+        let newPost: PostType = {
+            id: 5,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber()
+    },
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber()
+    },
+    addMessage() {
+        let newMessage: MessageType = {
+            id: 6,
+            message: this._state.dialogsPage.newMessageText
+        };
+        this._state.dialogsPage.messages.push(newMessage)
+        this._state.dialogsPage.newMessageText = '';
+        this._callSubscriber()
+    },
+    updateNewMessageText(newMessageText: string) {
+        this._state.dialogsPage.newMessageText = newMessageText;
+        this._callSubscriber()
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer
     }
 }
 
-export const addPost = () => {
-    let newPost: PostType = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = ''; //зануляем строку, убрали из Addpost пропс UpdatedNewPostText = '';
-    rerenderEntireTree(state)
-};
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state)
-};
-
-export const addMessage = () => {
-    let newMessage: MessageType = {
-        id: 6,
-        message: state.dialogsPage.newMessageText
-    };
-    state.dialogsPage.messages.push(newMessage)
-    state.dialogsPage.newMessageText = '';
-    rerenderEntireTree(state)
-};
-export const updateNewMessageText = (newMessageText: string) => {
-    state.dialogsPage.newMessageText = newMessageText;
-    rerenderEntireTree(state)
-}
-
-export const subscribe = (observer: any) => {
-    rerenderEntireTree = observer
-};
-
-
-export default state;
+export default store;

@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './sidebar.module.css';
 
-type SideBarPropsType = {
+
+export type SideBarPropsType = {
     id: number
     name: string
 }
