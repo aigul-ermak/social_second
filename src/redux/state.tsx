@@ -30,6 +30,7 @@ export type MessageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 export type StateType = {
     dialogsPage: DialogsPageType
@@ -51,7 +52,8 @@ let state: StateType = {
             {id: 2, message: 'What do you do?'},
             {id: 3, message: 'How come?'},
             {id: 4, message: 'Where you go?'}
-        ]
+        ],
+        newMessageText: 'gaga'
     },
     profilePage: {
         posts: [
@@ -85,15 +87,18 @@ export const updateNewPostText = (newText: string) => {
     rerenderEntireTree(state)
 };
 
-export const addMessage = (textMessage: string) => {
-
+export const addMessage = () => {
     let newMessage: MessageType = {
         id: 6,
-        message: textMessage
+        message: state.dialogsPage.newMessageText
     };
     state.dialogsPage.messages.push(newMessage)
     rerenderEntireTree(state)
 };
+export const updateNewMessageText = (newMessageText: string) => {
+    state.dialogsPage.newMessageText = newMessageText;
+    rerenderEntireTree(state)
+}
 
 export const subscribe = (observer: any) => {
     rerenderEntireTree = observer

@@ -7,8 +7,9 @@ import {DialogsPageType} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
+    addMessage: () => void
+    updateNewMessageText: (newMessageText: string) => void
 
-    addMessage: (textMessage: string) => void
 }
 const Dialogs = (props: DialogsPropsType) => {
 
@@ -17,18 +18,10 @@ const Dialogs = (props: DialogsPropsType) => {
 
 
     let messagesElements = props.dialogsPage.messages
-        .map(message => <Message
-            message={message.message} id={message.id}
-            addMessage={props.addMessage}/>);
-
-    // let newMessageElement = React.createRef<HTMLTextAreaElement>();//step 1
-    //
-    // let addMessage = () => {
-    //     if (newMessageElement.current) {
-    //         props.addMessage(newMessageElement.current.value)
-    //     }
-    //     // let newMessage = newMessageElement.current?.value;
-    // };
+        .map(message => <Message message={message.message} id={message.id}
+                                 addMessage={props.addMessage}
+                                 newMessageText={props.dialogsPage.newMessageText}
+                                 updateNewMessageText={props.updateNewMessageText}/>);
 
     return (
         <div className={s.dialogs}>
@@ -46,9 +39,9 @@ const Dialogs = (props: DialogsPropsType) => {
             {/*    /!*step3*!/*/}
             {/*</div>*/}
 
-                </div>
-                )
-                }
+        </div>
+    )
+}
 
 
-                export default Dialogs;
+export default Dialogs;

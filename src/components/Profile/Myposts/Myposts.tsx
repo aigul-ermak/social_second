@@ -17,13 +17,8 @@ const Myposts = (props: MypostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();//шаг1 -создаем специальную переменную - ссылку на элемент
 
     let addPost = () => {
-
-        // let text = newPostElement.current?.value;
-        // if (newPostElement.current)
-            props.addPost()
-            // props.updateNewPostText('') //зануляем значение через пропс
-
-    } //шаг4 - функция к которой мы можем обратиться к этой ссылке, далее к свойству current и у него берем value
+        props.addPost()
+    }
     let onPostChange = () => {
         if (newPostElement.current) {
             props.updateNewPostText(newPostElement.current.value)
@@ -35,11 +30,11 @@ const Myposts = (props: MypostsPropsType) => {
             <div>
                 <div>
                     <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>;
-                    {/*шаг2 -  тут вызываем эту ссылку которая заработает если нажмут на шаг 3*/}
+
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
-                    {/*шаг3 при нажатии на кнопку запускается функция*/}
+
                 </div>
             </div>
             <div className={s.posts}>
