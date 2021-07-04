@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {addMessage, addPost, StateType, updateNewMessageText, updateNewPostText} from './redux/state';
+import { StateType, updateNewMessageText} from './redux/state';
 
 type AppPropsType = {
     state: StateType
@@ -16,6 +16,7 @@ type AppPropsType = {
     addMessage: () => void
     updateNewPostText: (newText: string) => void
     updateNewMessageText: (newMessageText: string) => void
+
 }
 
 function App(props: AppPropsType) {
@@ -26,21 +27,22 @@ function App(props: AppPropsType) {
                 <Navbar friend={props.state.sidebar.friend}/>
 
                 <div className="app-wrapper-content">
-                    <Route path="/profile/" render={ () =>
+                    <Route path="/profile/" render={() =>
                         <Profile
                             profilePage={props.state.profilePage}
                             addPost={props.addPost}
                             updateNewPostText={props.updateNewPostText}
-                        /> }/>
-                    <Route path="/messages/" render={ () =>
+                        />}/>
+                    <Route path="/messages/" render={() =>
                         <Dialogs
                             dialogsPage={props.state.dialogsPage}
                             addMessage={props.addMessage}
                             updateNewMessageText={updateNewMessageText}
-                        /> }/>
-                    <Route path="/news/" render={ () => <News />}/>
-                    <Route path="/music/" render={ () => <Music />}/>
-                    <Route path="/settings/" render={ () => <Settings />}/>
+
+                        />}/>
+                    <Route path="/news/" render={() => <News/>}/>
+                    <Route path="/music/" render={() => <Music/>}/>
+                    <Route path="/settings/" render={() => <Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>

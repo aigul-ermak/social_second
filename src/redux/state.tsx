@@ -53,7 +53,7 @@ let state: StateType = {
             {id: 3, message: 'How come?'},
             {id: 4, message: 'Where you go?'}
         ],
-        newMessageText: 'gaga'
+        newMessageText: ''
     },
     profilePage: {
         posts: [
@@ -93,6 +93,7 @@ export const addMessage = () => {
         message: state.dialogsPage.newMessageText
     };
     state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.newMessageText = '';
     rerenderEntireTree(state)
 };
 export const updateNewMessageText = (newMessageText: string) => {

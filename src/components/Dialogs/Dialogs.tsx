@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-import {DialogsPageType} from '../../redux/state';
+import {DialogsPageType, MessageType} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
     addMessage: () => void
     updateNewMessageText: (newMessageText: string) => void
+
 
 }
 const Dialogs = (props: DialogsPropsType) => {
@@ -22,22 +23,25 @@ const Dialogs = (props: DialogsPropsType) => {
                                  addMessage={props.addMessage}
                                  newMessageText={props.dialogsPage.newMessageText}
                                  updateNewMessageText={props.updateNewMessageText}/>);
+    let addMessage = () => {
+        props.addMessage()
+    }
+    const onMessageOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewMessageText(event.currentTarget.value)
+    }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-
             <div className={s.message}>
                 {messagesElements}
             </div>
-            {/*<div>*/}
-            {/*    <textarea ref={newMessageElement}></textarea>*/}
-
-            {/*    <button onClick={addMessage}>Add message</button>*/}
-            {/*    /!*step3*!/*/}
-            {/*</div>*/}
+            <div>
+                <textarea value={props.dialogsPage.newMessageText} onChange={onMessageOnChange} />
+                <button onClick={addMessage}>Add message</button>
+            </div>
 
         </div>
     )
