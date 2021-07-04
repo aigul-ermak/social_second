@@ -3,12 +3,13 @@ import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-import {DialogsPageType, MessageType} from '../../redux/state';
+import {ActionType, DialogsPageType, MessageType} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    addMessage: () => void
-    updateNewMessageText: (newMessageText: string) => void
+    // addMessage: () => void
+    // updateNewMessageText: (newMessageText: string) => void
+    dispatch: (action: ActionType) => void
 
 
 }
@@ -20,14 +21,16 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let messagesElements = props.dialogsPage.messages
         .map(message => <Message message={message.message} id={message.id}
-                                 addMessage={props.addMessage}
-                                 newMessageText={props.dialogsPage.newMessageText}
-                                 updateNewMessageText={props.updateNewMessageText}/>);
+            // dispatch={props.dispatch}
+            // addMessage={props.addMessage}
+            // updateNewMessageText={props.updateNewMessageText}
+            // newMessageText={props.dialogsPage.newMessageText}
+        />);
     let addMessage = () => {
-        props.addMessage()
+        props.dispatch({type: 'ADD-MESSAGE'})
     }
     const onMessageOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewMessageText(event.currentTarget.value)
+        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessageText: event.currentTarget.value})
     }
 
     return (
@@ -39,7 +42,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 {messagesElements}
             </div>
             <div>
-                <textarea value={props.dialogsPage.newMessageText} onChange={onMessageOnChange} />
+                <textarea value={props.dialogsPage.newMessageText} onChange={onMessageOnChange}/>
                 <button onClick={addMessage}>Add message</button>
             </div>
 

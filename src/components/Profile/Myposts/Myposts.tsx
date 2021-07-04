@@ -1,12 +1,14 @@
 import React from 'react';
 import s from './Myposts.module.css'
 import Post, {PostPropsType} from './Post/Post';
+import {ActionType, ChangeNewTextActionType} from '../../../redux/state';
 
 type MypostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    // addPost: () => void
+    // updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 }
 
 const Myposts = (props: MypostsPropsType) => {
@@ -17,12 +19,18 @@ const Myposts = (props: MypostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();//шаг1 -создаем специальную переменную - ссылку на элемент
 
     let addPost = () => {
-        props.addPost()
+        props.dispatch({type: 'ADD-POST'})
     }
     let onPostChange = () => {
-        if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
+        let text = newPostElement.current?.value;
+        if(text){
+            let action: ChangeNewTextActionType  = {type:'UPDATE-NEW-POST-TEXT', newText: text}
+            props.dispatch(action)
         }
+
+        // if (newPostElement.current) {
+        //     props.updateNewPostText(newPostElement.current.value)
+        // }
     }
     return (
         <div className={s.postsBlock}>
