@@ -6,11 +6,6 @@ import {ActionType, DialogsPageType, MessageType} from '../../../redux/state';
 export type messagePropsType = {
     id: number
     message: string
-    // addMessage: () => void
-    // updateNewMessageText: (newMessageText: string) => void
-    // newMessageText: string
-
-
 }
 
 const Message = (props: messagePropsType) => {
@@ -25,11 +20,10 @@ const Message = (props: messagePropsType) => {
     )
 }
 
-
 export default Message;
 
 
-// newMessageElement.current.value = '';//занулим строку после добавления сообщения
+
 
 
 

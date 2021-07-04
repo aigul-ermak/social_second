@@ -3,15 +3,17 @@ import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-import {ActionType, DialogsPageType, MessageType} from '../../redux/state';
+import {
+    ActionType,
+    addMessageActionCreator,
+    DialogsPageType,
+    MessageType,
+    updateNewMessageTextActionCreator
+} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    // addMessage: () => void
-    // updateNewMessageText: (newMessageText: string) => void
     dispatch: (action: ActionType) => void
-
-
 }
 const Dialogs = (props: DialogsPropsType) => {
 
@@ -21,16 +23,13 @@ const Dialogs = (props: DialogsPropsType) => {
 
     let messagesElements = props.dialogsPage.messages
         .map(message => <Message message={message.message} id={message.id}
-            // dispatch={props.dispatch}
-            // addMessage={props.addMessage}
-            // updateNewMessageText={props.updateNewMessageText}
-            // newMessageText={props.dialogsPage.newMessageText}
         />);
     let addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'})
+        props.dispatch(addMessageActionCreator());
     }
     const onMessageOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessageText: event.currentTarget.value})
+        let text = event.currentTarget.value
+        props.dispatch(updateNewMessageTextActionCreator(text));
     }
 
     return (

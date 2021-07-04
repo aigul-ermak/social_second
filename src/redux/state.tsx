@@ -1,3 +1,5 @@
+import {ChangeEvent} from 'react';
+
 export type FriendType = {
     id: number
     name: string
@@ -36,30 +38,31 @@ export type StoreType = {
     _state: StateType
     getState: () => StateType
     _callSubscriber: () => void
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // addMessage: () => void
-    // updateNewMessageText: (newMessageText: string) => void
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionType) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-export type ChangeNewTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    // newMessageText: string
-}
-type  UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newMessageText: string
+// type AddPostActionType = {
+//     type: 'ADD-POST'
+// }
+// export type ChangeNewTextActionType = {
+//     type: 'UPDATE-NEW-POST-TEXT'
+//     newText: string
+// }
+// type AddMessageActionType = {
+//     type: 'ADD-MESSAGE'
+//     // newMessageText: string
+// }
+// type  UpdateNewMessageTextActionType = {
+//     type: 'UPDATE-NEW-MESSAGE-TEXT'
+//     newMessageText: string
+//
+// }
 
-}
+type AddPostActionType = ReturnType<typeof addPostActionCreator>
+type ChangeNewTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
+type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
+type  UpdateNewMessageTextActionType = ReturnType<typeof updateNewMessageTextActionCreator>
 export type ActionType = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | UpdateNewMessageTextActionType
 
 
@@ -136,34 +139,32 @@ let store: StoreType = {
     }
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: 'ADD-POST'
+    } as const
+}
+
+export const updateNewPostTextActionCreator = (text: string) => {
+    return {
+        type:'UPDATE-NEW-POST-TEXT',
+        newText: text
+    }as const
+}
+
+export const addMessageActionCreator = () => {
+    return {
+        type: 'ADD-MESSAGE'
+    } as const
+}
+
+export const updateNewMessageTextActionCreator = (text: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT', newMessageText: text
+    } as const
+}
+
 export default store;
 
 
 
-// addPost() {
-//     let newPost: PostType = {
-//         id: 5,
-//         message: this._state.profilePage.newPostText,
-//         likesCount: 0
-//     };
-//     this._state.profilePage.posts.push(newPost);
-//     this._state.profilePage.newPostText = '';
-//     this._callSubscriber()
-// },
-// updateNewPostText(newText: string) {
-//     this._state.profilePage.newPostText = newText;
-//     this._callSubscriber()
-// },
-// addMessage() {
-//     let newMessage: MessageType = {
-//         id: 6,
-//         message: this._state.dialogsPage.newMessageText
-//     };
-//     this._state.dialogsPage.messages.push(newMessage)
-//     this._state.dialogsPage.newMessageText = '';
-//     this._callSubscriber()
-// },
-// updateNewMessageText(newMessageText: string) {
-//     this._state.dialogsPage.newMessageText = newMessageText;
-//     this._callSubscriber()
-// },

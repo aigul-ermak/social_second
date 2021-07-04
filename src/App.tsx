@@ -12,10 +12,6 @@ import {ActionType, StoreType} from './redux/state';
 
 type AppPropsType = {
     store: StoreType
-    // addPost: () => void
-    // addMessage: () => void
-    // updateNewPostText: (newText: string) => void
-    // updateNewMessageText: (newMessageText: string) => void
     dispatch: (action: ActionType) => void
 
 }
@@ -34,14 +30,11 @@ function App(props: AppPropsType) {
                         <Profile
                             profilePage={state.profilePage}
                             dispatch={props.dispatch.bind(props.store)}
-                            // addPost={props.store.addPost.bind(props.store)}
-                            // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+
                         />}/>
                     <Route path="/messages/" render={() =>
                         <Dialogs
                             dialogsPage={state.dialogsPage}
-                            // addMessage={props.store.addMessage.bind(props.store)}
-                            // updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
                             dispatch={props.dispatch.bind(props.store)}
                         />}/>
                     <Route path="/news/" render={() => <News/>}/>
