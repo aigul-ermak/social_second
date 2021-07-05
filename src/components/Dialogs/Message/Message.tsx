@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './../Dialogs.module.css';
-import {ActionType, DialogsPageType, MessageType} from '../../../redux/state';
+import {ActionType, DialogsPageType, MessageType} from '../../../redux/store';
 
 export type messagePropsType = {
     id: number
