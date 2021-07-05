@@ -1,18 +1,13 @@
 import React from 'react';
 import s from './Myposts.module.css'
 import Post, {PostPropsType} from './Post/Post';
-import {
-    ActionType,
-    addPostActionCreator,
-    updateNewPostTextActionCreator
-} from '../../../redux/state';
+import {ActionType} from '../../../redux/state';
+import {addPostAC, updateNewPostAC} from '../../../redux/profileReducer';
 
 type MypostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
     dispatch: (action: ActionType) => void
-    // addPostActionCreator: () => void
-    // updateNewPostTextActionCreator: (text: string) => void
 }
 
 
@@ -24,12 +19,12 @@ const Myposts = (props: MypostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();//шаг1 -создаем специальную переменную - ссылку на элемент
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostAC());
     }
     let onPostChange = () => {
         let text = newPostElement.current?.value;
         if(text){
-            let action = updateNewPostTextActionCreator(text)
+            let action = updateNewPostAC(text)
             props.dispatch(action)
         }
     }
