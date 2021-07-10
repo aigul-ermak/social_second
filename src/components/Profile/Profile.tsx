@@ -7,6 +7,7 @@ import {ProfilePageType} from '../../types/types';
 
 
 type ProfilePropsType = {
+    profilePage: ProfilePageType
 
     store: StoreType
 
@@ -14,7 +15,8 @@ type ProfilePropsType = {
 const Profile = (props: ProfilePropsType) => {
     return <div>
         <ProfileInfo/>
-        <MyPostsContainer store={props.store} />
+        <MyPostsContainer store={props.store}
+        />
 
 
 
