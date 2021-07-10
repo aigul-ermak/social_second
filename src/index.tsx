@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store, {AppStateType} from './redux/redux-store';
+import store, {RootStateType} from './redux/redux-store';
 import {Provider} from 'react-redux';
 
 
-export let rerenderEntireTree = (state: AppStateType ) => {
+export let rerenderEntireTree = (state: RootStateType ) => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
-                <App />
+                <App store={store}/>
             </Provider>
         </React.StrictMode>,
         document.getElementById('root')

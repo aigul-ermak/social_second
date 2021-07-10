@@ -9,8 +9,8 @@ type DialogsPropsType = {
     dialogsPage: DialogsPageType
     addMessage: () => void
     onMessageOnChange: (text: string) => void
-    // DialogItem: Array<DialogType>
-    // Message: Array<MessageType>
+    DialogItem: Array<DialogType>
+    Message: Array<MessageType>
     newMessageText: string
 }
 const Dialogs = (props: DialogsPropsType) => {

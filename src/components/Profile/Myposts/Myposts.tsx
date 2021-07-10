@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Myposts.module.css'
 import Post, {PostPropsType} from './Post/Post';
 
-
 type MypostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
@@ -10,7 +9,7 @@ type MypostsPropsType = {
     addPost: () => void
 }
 
-const MyPosts = (props: MypostsPropsType) => {
+const Myposts = (props: MypostsPropsType) => {
 
     let postElements = props.posts
         .map(post => <Post message={post.message} likesCount={post.likesCount} id={post.id}/>);
@@ -43,4 +42,4 @@ const MyPosts = (props: MypostsPropsType) => {
     )
 };
 
-export default MyPosts;
+export default Myposts;

@@ -1,15 +1,10 @@
 import {PostType, ProfilePageType} from '../types/types';
 import {ActionType, AddNewPostAT, AddPostAT} from '../types/dispatchTypes';
 
-// export type InitialStateType = {
-//     posts: Array<PostType>
-//     newPostText: string
-// }
-
 const ADD_POST = 'ADD-POST';
 const ADD_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const initialState: ProfilePageType  = {
+let initialState = {
     posts: [
         {id: 1, message: 'go home', likesCount: 1},
         {id: 2, message: 'go to school', likesCount: 2},
@@ -18,7 +13,8 @@ const initialState: ProfilePageType  = {
     newPostText: 'it-kamasutra.com'
 }
 
-const profileReducer = (state: ProfilePageType  = initialState, action: ActionType): ProfilePageType => {
+
+const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {

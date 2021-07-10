@@ -1,5 +1,6 @@
 import {ActionType, AddMessageAT, AddNewMessageAT} from '../types/dispatchTypes';
-import {DialogType, MessageType} from '../types/types';
+import {DialogsPageType, MessageType} from '../types/types';
+
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const ADD_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
@@ -12,18 +13,16 @@ let initialState = {
         {id: 3, name: 'Sasha'},
         {id: 4, name: 'Viktor'},
         {id: 5, name: 'Katya'}
-    ] as Array<DialogType>,
+    ],
     messages: [
         {id: 1, message: 'How are you?'},
         {id: 2, message: 'What do you do?'},
         {id: 3, message: 'How come?'},
         {id: 4, message: 'Where you go?'}
-    ] as Array<MessageType>,
+    ],
     newMessageText: ''
 }
-export type InitialStateType = typeof initialState
-
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage: MessageType = {
