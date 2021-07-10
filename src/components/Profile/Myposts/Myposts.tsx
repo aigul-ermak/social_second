@@ -1,32 +1,26 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Myposts.module.css'
 import Post, {PostPropsType} from './Post/Post';
-import {ActionType} from '../../../redux/store';
-import {addPostAC, updateNewPostAC} from '../../../redux/profileReducer';
 
 type MypostsPropsType = {
     posts: Array<PostPropsType>
     newPostText: string
-    dispatch: (action: ActionType) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
-
 
 const Myposts = (props: MypostsPropsType) => {
 
     let postElements = props.posts
         .map(post => <Post message={post.message} likesCount={post.likesCount} id={post.id}/>);
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();//шаг1 -создаем специальную переменную - ссылку на элемент
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        props.dispatch(addPostAC());
+    let onAddPost = () => {
+        props.addPost();
     }
-    let onPostChange = () => {
-        let text = newPostElement.current?.value;
-        if(text){
-            let action = updateNewPostAC(text)
-            props.dispatch(action)
-        }
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostText(e.currentTarget.value);
     }
     return (
         <div className={s.postsBlock}>
@@ -37,7 +31,7 @@ const Myposts = (props: MypostsPropsType) => {
 
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
 
                 </div>
             </div>

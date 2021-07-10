@@ -1,30 +1,31 @@
 import React, {ChangeEvent} from 'react';
-import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
-import {ActionType, DialogsPageType} from '../../redux/store';
-import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
+import {DialogsPageType, DialogType, MessageType} from '../../types/types';
+
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    dispatch: (action: ActionType) => void
+    addMessage: () => void
+    onMessageOnChange: (text: string) => void
+    DialogItem: Array<DialogType>
+    Message: Array<MessageType>
+    newMessageText: string
 }
 const Dialogs = (props: DialogsPropsType) => {
 
     const dialogsElements = props.dialogsPage.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    const messagesElements = props.dialogsPage.messages
+        .map(message => <Message message={message.message} id={message.id}/>);
 
-
-    let messagesElements = props.dialogsPage.messages
-        .map(message => <Message message={message.message} id={message.id}
-        />);
     let addMessage = () => {
-        props.dispatch(addMessageAC());
+        props.addMessage();
     }
     const onMessageOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let text = event.currentTarget.value
-        props.dispatch(updateNewMessageTextAC(text));
+        props.onMessageOnChange(text);
     }
 
     return (
@@ -37,7 +38,9 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div>
                 <div>
-                    <textarea value={props.dialogsPage.newMessageText} onChange={onMessageOnChange}/>
+                    <textarea value={props.dialogsPage.newMessageText}
+                              onChange={onMessageOnChange}
+                              placeholder="Enter your message"/>
                 </div>
                 <div>
                     <button onClick={addMessage}>Add message</button>

@@ -1,7 +1,10 @@
-import {ActionType, AddMessageAT, AddNewMessageAT, MessageType} from './store';
+import {ActionType, AddMessageAT, AddNewMessageAT} from '../types/dispatchTypes';
+import {DialogsPageType, MessageType} from '../types/types';
+
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
 const ADD_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 
 let initialState = {
     dialogs: [
@@ -19,7 +22,7 @@ let initialState = {
     ],
     newMessageText: ''
 }
-const dialogsReducer = (state = initialState, action: ActionType) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage: MessageType = {
