@@ -7,8 +7,7 @@ import {ProfilePageType} from '../../types/types';
 
 
 type ProfilePropsType = {
-    profilePage: ProfilePageType
-
+  
     store: StoreType
 
 }

@@ -12,11 +12,10 @@ import {StoreType} from './redux/redux-store';
 import {ActionType} from './types/dispatchTypes';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import MyPostsContainer from './components/Profile/Myposts/MypostsContainer';
+import {ProfilePageType} from './types/types';
 
 type AppPropsType = {
     store: StoreType
-
-
 }
 
 function App(props: AppPropsType) {
@@ -30,7 +29,7 @@ function App(props: AppPropsType) {
 
                 <div className="app-wrapper-content">
                     <Route path="/profile/" render={() =>
-                        <MyPostsContainer store={props.store}/>}/>
+                        <Profile store={props.store}/>}/>
                     <Route path="/messages/" render={() =>
                         <DialogsContainer store={props.store}/>}/>
 
