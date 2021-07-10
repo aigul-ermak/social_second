@@ -1,5 +1,5 @@
 import {ActionType, AddMessageAT, AddNewMessageAT} from '../types/dispatchTypes';
-import {DialogsPageType, MessageType} from '../types/types';
+import { MessageType} from '../types/types';
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
@@ -22,7 +22,10 @@ let initialState = {
     ],
     newMessageText: ''
 }
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
+
+export type InitialStateType = typeof initialState
+
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE:
             let newMessage: MessageType = {

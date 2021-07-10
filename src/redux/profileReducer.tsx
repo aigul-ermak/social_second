@@ -9,12 +9,12 @@ let initialState = {
         {id: 1, message: 'go home', likesCount: 1},
         {id: 2, message: 'go to school', likesCount: 2},
         {id: 3, message: 'go to work', likesCount: 33},
-    ],
+    ] as Array<PostType>,
     newPostText: 'it-kamasutra.com'
 }
+export type InitialStateType = typeof initialState
 
-
-const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
+const profileReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {
