@@ -1,5 +1,5 @@
 import {ActionType, AddMessageAT, AddNewMessageAT} from '../types/dispatchTypes';
-import { MessageType} from '../types/types';
+import {MessageType} from '../types/types';
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
@@ -27,17 +27,22 @@ export type InitialStateType = typeof initialState
 
 const dialogsReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case ADD_MESSAGE: {
             let newMessage: MessageType = {
                 id: 6,
                 message: state.newMessageText
             };
-            state.messages.push(newMessage)
-            state.newMessageText = '';
-            return state;
-        case ADD_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.messages.push(newMessage)
+            stateCopy.newMessageText = '';
+            return stateCopy;
+        }
+        case ADD_NEW_MESSAGE_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newMessageText = action.newMessageText;
+            return stateCopy;
+        }
         default:
             return state;
     }
