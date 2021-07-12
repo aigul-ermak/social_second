@@ -10,12 +10,10 @@ import Settings from './components/Settings/Settings';
 
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
+import UsersContainer from './components/Users/UsersContainer';
 
-type AppPropsType = {
 
-}
-
-function App(props: AppPropsType) {
+function App() {
 
     return (
         <BrowserRouter>
@@ -25,10 +23,12 @@ function App(props: AppPropsType) {
                 {/*<Navbar friend={state.sidebar}/>*/}
 
                 <div className="app-wrapper-content">
-                    <Route path="/profile/" render={() =>
-                        <Profile />}/>
-                    <Route path="/messages/" render={() =>
-                        <DialogsContainer />}/>
+                    <Route path="/profile/"
+                           render={() => <Profile />}/>
+                    <Route path="/messages/"
+                           render={() => <DialogsContainer />}/>
+                    <Route path="/users"
+                           render={() => <UsersContainer />}/>
 
                     <Route path="/news/" render={() => <News/>}/>
                     <Route path="/music/" render={() => <Music/>}/>

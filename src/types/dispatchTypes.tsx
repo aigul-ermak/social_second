@@ -1,3 +1,5 @@
+import {UserType} from './types';
+
 export type AddPostAT = {
     type: 'ADD-POST'
 }
@@ -12,4 +14,23 @@ export type AddNewMessageAT = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newMessageText: string
 }
+
+export type FollowUserAT = {
+    type: 'FOLLOW'
+    userId: number
+}
+
+export type UnfollowUserAT = {
+    type: 'UNFOLLOW'
+    userId: number
+}
+
+export type SetUsersAT = {
+    type: 'SET_USERS'
+    users: Array<UserType>
+}
+
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT | AddNewMessageAT
+    | FollowUserAT | UnfollowUserAT | SetUsersAT
+
+

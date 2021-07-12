@@ -1,3 +1,20 @@
+
+
+type UserLocationType = {
+    city: string
+    country: string
+}
+export type UserType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: UserLocationType
+}
+export type UsersPage = {
+    users: Array<UserType>
+}
 export type FriendType = {
     id: number
     name: string
