@@ -16,3 +16,7 @@
   background-color: cyan;
 }
 
+.selectedPage {
+  font-weight: bold;
+}
+

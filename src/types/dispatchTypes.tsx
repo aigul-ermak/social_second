@@ -30,7 +30,16 @@ export type SetUsersAT = {
     users: Array<UserType>
 }
 
+export type SetCurrentPageAT = {
+    type: 'SET_CURRENT_PAGE'
+    currentPage: number
+}
+
+export type SetTotalUsersCountAT = {
+    type: 'SET_TOTAL_USERS_COUNT'
+    count: number
+}
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT | AddNewMessageAT
-    | FollowUserAT | UnfollowUserAT | SetUsersAT
+    | FollowUserAT | UnfollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT
 
 
