@@ -2,9 +2,9 @@ import {UserType} from '../types/types';
 import {
     ActionType,
     FollowUserAT,
-    SetCurrentPageAT, SetToggleIsFetchingAT,
+    SetCurrentPageAT,
     SetTotalUsersCountAT,
-    SetUsersAT,
+    SetUsersAT, ToggleIsFetchingAT,
     UnfollowUserAT
 } from '../types/dispatchTypes';
 
@@ -80,12 +80,12 @@ const UsersReducer = (state: InitialStateType = initialState, action: ActionType
 };
 
 
-export const followAC = (userId: number): FollowUserAT => ({type: FOLLOW, userId}) as const
-export const unfollowAC = (userId: number): UnfollowUserAT => ({type: UNFOLLOW, userId}) as const
-export const setUsersAC = (users: Array<UserType>): SetUsersAT => ({type: SET_USERS, users}) as const
-export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage}) as const
-export const setTotalUsersCountAC = (totalUsersCount: number): SetTotalUsersCountAT => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount}) as const
-export const toggleIsFetchingAC = (isFetching: boolean): SetToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching}) as const
+export const follow = (userId: number): FollowUserAT => ({type: FOLLOW, userId}) as const
+export const unfollow = (userId: number): UnfollowUserAT => ({type: UNFOLLOW, userId}) as const
+export const setUsers = (users: Array<UserType>): SetUsersAT => ({type: SET_USERS, users}) as const
+export const setCurrentPage = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage}) as const
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountAT => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount}) as const
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching}) as const
 
 export default UsersReducer;
 

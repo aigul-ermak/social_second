@@ -40,11 +40,11 @@ export type SetTotalUsersCountAT = {
     count: number
 }
 
-export type SetToggleIsFetchingAT = {
+export type ToggleIsFetchingAT = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT | AddNewMessageAT
-    | FollowUserAT | UnfollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | SetToggleIsFetchingAT
+    | FollowUserAT | UnfollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
 
 
