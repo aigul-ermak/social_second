@@ -1,4 +1,4 @@
-import {UserType} from './types';
+import {ProfileType, UserType} from './types';
 
 export type AddPostAT = {
     type: 'ADD-POST'
@@ -44,7 +44,13 @@ export type ToggleIsFetchingAT = {
     type: 'TOGGLE_IS_FETCHING'
     isFetching: boolean
 }
+
+export type setUserProfileAT = {
+    type: 'SET_USER_PROFILE'
+    profile: ProfileType
+}
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT | AddNewMessageAT
     | FollowUserAT | UnfollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
+|setUserProfileAT
 
 

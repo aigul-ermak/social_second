@@ -1,15 +1,18 @@
+import {stringify} from 'querystring';
 
 
 type UserLocationType = {
     city: string
     country: string
 }
+
+type PhotosType = {
+    small: string
+    large: string
+}
 export type UserType = {
     id: number
-    photos: {
-        small: string
-        large: string
-    }
+    photos: PhotosType
     followed: boolean
     name: string
     status: string
@@ -47,4 +50,24 @@ export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
+}
+type ContactsType = {
+    facebook: string
+    website: null
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: null
+    github: string
+    mainLink: null
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotosType
 }

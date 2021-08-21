@@ -1,8 +1,9 @@
-import {PostType, ProfilePageType} from '../types/types';
-import {ActionType, AddNewPostAT, AddPostAT} from '../types/dispatchTypes';
+import {PostType, ProfileType} from '../types/types';
+import {ActionType, AddNewPostAT, AddPostAT, setUserProfileAT} from '../types/dispatchTypes';
 
 const ADD_POST = 'ADD-POST';
 const ADD_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
     posts: [
@@ -10,9 +11,15 @@ let initialState = {
         {id: 2, message: 'go to school', likesCount: 2},
         {id: 3, message: 'go to work', likesCount: 33},
     ] as Array<PostType>,
-    newPostText: 'it-kamasutra.com'
+    newPostText: 'it-kamasutra.com',
+    profile: null
+
 }
-export type InitialStateType = typeof initialState
+export type InitialStateType = {
+    posts: Array<PostType>
+    newPostText: string
+    profile: null | ProfileType
+}
 
 const profileReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
@@ -32,12 +39,18 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
                 ...state,
                 newPostText: action.newText
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state;
     }
 }
 export const addPostAC = (): AddPostAT => ({type: ADD_POST})
 export const updateNewPostAC = (text: string): AddNewPostAT => ({type: ADD_NEW_POST_TEXT, newText: text})
+export const setUserProfile = (profile: ProfileType): setUserProfileAT => ({type: SET_USER_PROFILE, profile}) as const
 
 export default profileReducer;
 
