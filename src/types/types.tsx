@@ -71,3 +71,10 @@ export type ProfileType = {
     userId: number
     photos: PhotosType
 }
+
+
+export type AuthUserDataType = {
+    userId: null | string
+    email: null | string
+    login: null | string
+}

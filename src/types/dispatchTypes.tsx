@@ -1,4 +1,4 @@
-import {ProfileType, UserType} from './types';
+import {AuthUserDataType, ProfileType, UserType} from './types';
 
 export type AddPostAT = {
     type: 'ADD-POST'
@@ -49,8 +49,14 @@ export type setUserProfileAT = {
     type: 'SET_USER_PROFILE'
     profile: ProfileType
 }
-export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT | AddNewMessageAT
-    | FollowUserAT | UnfollowUserAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
-|setUserProfileAT
+
+export type setAuthUserDataAT = {
+    type: 'SET_USER_DATA'
+    data: AuthUserDataType
+}
+export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT
+    | AddNewMessageAT | FollowUserAT | UnfollowUserAT | SetUsersAT
+    | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
+|setUserProfileAT | setAuthUserDataAT
 
 
