@@ -1,7 +1,8 @@
 import {ActionType, setAuthUserDataAT} from '../types/dispatchTypes';
+import {usersAPI} from '../api/Api';
+import {toggleFollowingProgress} from './usersReduser';
 
 const SET_USER_DATA = 'SET_USER_DATA'
-
 
 
 let initialState = {
@@ -40,5 +41,17 @@ export const setAuthUserData = (userId: string | null, email: string | null, log
     type: SET_USER_DATA,
     data: {userId, email, login}
 })
+
+export const getAuthUserData = () => (dispatch: any) => {
+    usersAPI.getUserAuth()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {userId, email, login} = data.data
+                dispatch(setAuthUserData(userId, email, login));
+
+            }
+        })
+}
+
 
 export default authReducer;

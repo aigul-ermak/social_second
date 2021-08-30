@@ -1,5 +1,7 @@
 import {PostType, ProfileType} from '../types/types';
 import {ActionType, AddNewPostAT, AddPostAT, setUserProfileAT} from '../types/dispatchTypes';
+import {usersAPI} from '../api/Api';
+import {toggleFollowingProgress} from './usersReduser';
 
 const ADD_POST = 'ADD-POST';
 const ADD_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -51,6 +53,15 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
 export const addPostAC = (): AddPostAT => ({type: ADD_POST})
 export const updateNewPostAC = (text: string): AddNewPostAT => ({type: ADD_NEW_POST_TEXT, newText: text})
 export const setUserProfile = (profile: ProfileType): setUserProfileAT => ({type: SET_USER_PROFILE, profile}) as const
+
+export const getUserProfile = (userId: string) => {
+    return (dispatch: any) => {
+        usersAPI.getUserProfile(userId)
+            .then(data => {
+                dispatch(setUserProfile(data));
+            });
+    }
+}
 
 export default profileReducer;
 
