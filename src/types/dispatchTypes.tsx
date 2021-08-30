@@ -54,9 +54,15 @@ export type setAuthUserDataAT = {
     type: 'SET_USER_DATA'
     data: AuthUserDataType
 }
+
+export type toggleIsFollowingInProgressAT = {
+    type: 'TOGGLE_IS_FOLLOWING_IN_PROGRESS'
+    isFetching: boolean
+    userId: number
+}
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT
     | AddNewMessageAT | FollowUserAT | UnfollowUserAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
-|setUserProfileAT | setAuthUserDataAT
+|setUserProfileAT | setAuthUserDataAT | toggleIsFollowingInProgressAT
 
 
