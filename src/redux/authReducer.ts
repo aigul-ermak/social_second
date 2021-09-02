@@ -1,6 +1,6 @@
 import {ActionType, setAuthUserDataAT} from '../types/dispatchTypes';
 import {usersAPI} from '../api/Api';
-import {toggleFollowingProgress} from './usersReduser';
+
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -23,6 +23,7 @@ type InitialStateType = {
 
 
 const authReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+    debugger
     switch (action.type) {
         case SET_USER_DATA:
             return {

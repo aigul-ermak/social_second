@@ -3,15 +3,15 @@ import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogsItem';
 import Message from './Message/Message';
 import {DialogsPageType, DialogType, MessageType} from '../../types/types';
+import { Redirect } from 'react-router-dom';
 
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
     addMessage: () => void
     onMessageOnChange: (text: string) => void
-    // DialogItem: Array<DialogType>
-    // Message: Array<MessageType>
     newMessageText: string
+    isAuth: boolean
 }
 const Dialogs = (props: DialogsPropsType) => {
 
@@ -27,6 +27,8 @@ const Dialogs = (props: DialogsPropsType) => {
         let text = event.currentTarget.value
         props.onMessageOnChange(text);
     }
+
+    if(!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.dialogs}>
