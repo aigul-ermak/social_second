@@ -10,6 +10,7 @@ import {Redirect, withRouter} from 'react-router-dom';
 import {usersAPI} from '../../api/Api';
 import Dialogs from '../Dialogs/Dialogs';
 import {withAuthRedirect} from '../../HOC/WithAuthRedirect';
+import {compose} from 'redux';
 
 type ProfileContainerPropsType = RouteComponentProps<{userId?: string}> &  {
     // setUserProfile: (data: ProfileType) => void
@@ -48,9 +49,10 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     isAuth: state.auth.isAuth
 })
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+export default compose <React.ComponentType> (
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    // withAuthRedirect
+) (ProfileContainer);
 
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
-
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);
