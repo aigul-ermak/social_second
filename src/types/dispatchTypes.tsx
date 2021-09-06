@@ -60,9 +60,16 @@ export type toggleIsFollowingInProgressAT = {
     isFetching: boolean
     userId: number
 }
+
+export type setUserStatusAT = {
+    type : 'SET_STATUS'
+   status: string
+}
+
 export type ActionType = AddPostAT | AddNewPostAT | AddMessageAT
     | AddNewMessageAT | FollowUserAT | UnfollowUserAT | SetUsersAT
     | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
 |setUserProfileAT | setAuthUserDataAT | toggleIsFollowingInProgressAT
+| setUserStatusAT
 
 

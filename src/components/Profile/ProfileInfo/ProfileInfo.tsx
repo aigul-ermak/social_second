@@ -6,6 +6,9 @@ import ProfileStatus from './ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: null | ProfileType
+    getStatus: (userId: string) => void
+    updateStatus: (status: string) => void
+    status: string
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -20,7 +23,9 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
             </div>
 
             <div className={s.descriptionBlock}>
-               <ProfileStatus status={'i am ok'}/>
+               <ProfileStatus status={props.status}
+                              getStatus={props.getStatus}
+                              updateStatus={props.updateStatus}/>
             </div>
 
             <div>
