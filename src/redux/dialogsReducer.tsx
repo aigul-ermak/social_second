@@ -3,8 +3,6 @@ import {MessageType} from '../types/types';
 
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const ADD_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-
 
 let initialState = {
     dialogs: [
@@ -20,7 +18,7 @@ let initialState = {
         {id: 3, message: 'How come?'},
         {id: 4, message: 'Where you go?'}
     ],
-    newMessageText: ''
+
 }
 
 export type InitialStateType = typeof initialState
@@ -29,16 +27,10 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionTy
 
     switch (action.type) {
         case ADD_MESSAGE:
-            let newMessage: MessageType = {id: 6, message: state.newMessageText}
+            let newMessage: MessageType = {id: 6, message: action.newMessageText}
             return {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, newMessage]
-            }
-        case ADD_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newMessageText
             }
         default:
             return state;
@@ -46,10 +38,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionTy
 }
 
 
-export const addMessageAC = (): AddMessageAT => ({type: ADD_MESSAGE})
-export const updateNewMessageTextAC = (text: string): AddNewMessageAT => ({
-    type: ADD_NEW_MESSAGE_TEXT,
-    newMessageText: text
-})
+export const addMessageAC = (newMessageText: string): AddMessageAT => ({type: ADD_MESSAGE, newMessageText})
 
 export default dialogsReducer;

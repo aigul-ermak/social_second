@@ -2,6 +2,7 @@ import {AuthUserDataType, ProfileType, UserType} from './types';
 
 export type AddPostAT = {
     type: 'ADD-POST'
+    newPostText: string
 }
 export type AddNewPostAT = {
     type: 'UPDATE-NEW-POST-TEXT'
@@ -9,6 +10,7 @@ export type AddNewPostAT = {
 }
 export type AddMessageAT = {
     type: 'ADD-MESSAGE'
+    newMessageText: string
 }
 export type AddNewMessageAT = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
